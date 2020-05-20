@@ -1,0 +1,148 @@
+<main class="py-5 frms">
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-md-8 py-1">
+                <div class="card">
+                    <h2 class="m-b-2 card-header ">Registro personas</h2>
+                    <form id="form-persona" class="py-5 card-body ">
+                        <div class="form-group row">
+                            <input type="hidden" id="id">
+                            <label for="nombreCliente" class="col-lg-2 col-form-label">Nombres</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="nombres" placeholder="Nombres"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese su Nombres">
+                            </div>
+                            <label for="apellidoCliente" class="col-lg-2 col-form-label">Apellidos</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="apellidos" placeholder="Apellidos"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese su Apellidos">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="documentoCliente" class=" col-lg-2 col-form-label">Tipo Documento
+                            </label>
+                            <div class="form-group col-lg-4">
+                                <select class="  form-control" id="id_documento">
+                                    <option value="0">tipo de documento</option>
+                                    {{#each documento}}
+                                    <option value="{{ID}}">{{descripcion}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <label for="numeroDocuCliente" class=" col-lg-2 col-form-label">N° Documento</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="N_documento"
+                                    placeholder="Número de documento" data-toggle="tooltip" data-placement="top"
+                                    title="Ingrese el Número de Documento">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fechaNacimiento" class=" col-lg-2 col-form-label">Fecha Nacimiento</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="date" id="fecha_nacimiento"
+                                    placeholder="Fecha de Nacimiento" data-toggle="tooltip" data-placement="top">
+                            </div>
+                            <label for="genero" class=" col-lg-2 col-form-label">edad</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="edad" placeholder="edad"
+                                    data-toggle="tooltip" data-placement="top">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telCliente" class=" col-lg-2 col-form-label">Teléfono</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="telefono" placeholder="Teléfono Cliente"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese el Telefono">
+                            </div>
+                            <label for="correoCliente" class=" col-lg-2 col-form-label">E-Mail</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="correo" placeholder="Email de Cliente"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese el Email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="DireccionCliente" class=" col-lg-2 col-form-label">Dirección</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="direccion" placeholder="Dirección Cliente"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese su Dirección">
+
+                            </div>
+                            <label for="DireccionCliente" class=" col-lg-2 col-form-label">barrio</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="barrio" placeholder="barrio"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese el barrio">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="genero" class=" col-lg-2 col-form-label">Genero</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_genero">
+                                    <option value="0">tipo de genero</option>
+                                    {{#each genero}}
+                                    <option value="{{ID}}">{{descripcion}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row py-4">
+                            <div class="col-lg-6 offset-lg-2">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-header">Nota</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Special title treatment</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombres</th>
+                        <th>Tipo Documento</th>
+                        <th>N° Documento</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Telefono</th>
+                        <th>E-mail</th>
+                        <th>Dirección</th>
+                        <th>barrio</th>
+                        <th>acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each persona}}
+                    <tr task="{{ID}}">
+                        <th scope="row">{{ID}}</th>
+                        <td>{{nombres}}</td>
+                        <td>{{documento}}</td>
+                        <td>{{N_documento}}</td>
+                        <td>{{fecha_nacimiento}}</td>
+                        <td>{{telefono}}</td>
+                        <td>{{correo}}</td>
+                        <td>{{direccion}}</td>
+                        <td>{{barrio}}</td>
+                        <td>
+                            <button id="edit-persona" class="btn btn-success updateicon fas fa-edit">editar</button>
+                            <form action="/persona/eliminar/{{ID}}?_method=DELETE" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit"
+                                    class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

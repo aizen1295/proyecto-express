@@ -1,0 +1,63 @@
+<section>
+    <header class="encabezado navbar fixed-top" role="banner" id="encabezado">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/images/logoPrincipal.png" alt="logo del sitio" />
+            </a>
+
+            <button type="button" class="boton-buscar" data-toggle="collapse" data-target=#bloque-buscar
+                aria-expanded="false"> <i class="fa fa-search" aria-hidden="true"></i></button>
+            <button type="button" class="boton-menu hidden-md-up" data-toggle="collapse" data-target=#menu-principal
+                aria-expanded="false"><i class="fa fa-bars hola" aria-hidden="true"></i></button>
+            <form action="#" id="bloque-buscar" class="collapse">
+                <!--se utiliza js para ocultar mostrar formulario de busqueda-->
+                <div class="contenedor-bloque-buscar">
+                    <!--clase de este-->
+                    <input type="text" placeholder="Buscar..." />
+                    <!-- de tipo texto y con ayuda visual de texto guia-->
+                    <input type="submit" value="Buscar" />
+                </div>
+            </form>
+            <nav id="menu-principal" class="collapse">
+                <ul>
+                    <li><a class="menu active" href="/">inicio</a></li>
+                </ul>
+                <ul class=" btn-group" role="group">
+                    <li>
+                        <a class="menu  dropdown-toggle" data-toggle="dropdown" href="#" role="button "
+                            aria-haspopup="true" aria-expanded="false" id="btnGroupDrop1">Empleados</a>
+                        <div class="dropdown-menu ">
+                            <a class="dropdown-item" href="/rol">Rol</a>
+                            <a class="dropdown-item" href="/empleados">Usuario</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class=" btn-group" role="group">
+                    <li>
+                        <a class="menu  dropdown-toggle" data-toggle="dropdown" href="#" role="button "
+                            aria-haspopup="true" aria-expanded="false" id="btnGroupDrop1">Producto</a>
+                        <div class="dropdown-menu ">
+                            <a class="dropdown-item" href="/marca">Marca</a>
+                            <a class="dropdown-item" href="/productos">Producto</a>
+                            <a class="dropdown-item" href="/Proveedor">proveedor</a>
+                            <a class="dropdown-item" href="/pedido">Pedido</a>
+
+                        </div>
+                    </li>
+                </ul>
+                <ul class="btn-group" role="group">
+                    <li>
+                        <a class="menu  dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false" id="btnGroupDrop1">factura</a>
+                        <div class="dropdown-menu  " aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="/persona">persona</a>
+                            <a class="dropdown-item" href="/clientes">clientes</a>
+                            <a class="dropdown-item" href="/factura">Factura</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+</section>

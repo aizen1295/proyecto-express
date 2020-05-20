@@ -1,0 +1,69 @@
+<main class="py-5 frms">
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-md-8 py-1">
+                <div class="card">
+                    <h2 class="m-b-2 card-header ">Registro de los roles</h2>
+                    <form id="form-rol" class="py-5 card-body ">
+                        <div class="form-group row">
+                            <input type="hidden" id="id">
+                            <label for="rolUsuario" class="col-lg-2 col-form-label">Nombre</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="rol" placeholder="Nombre"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese el Rol">
+                            </div>
+                            <label for="descripRol" class="col-lg-2 col-form-label">Descripción</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="descripcion" placeholder="Descripción"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese la Descripción">
+                            </div>
+                        </div>
+                        <div class="form-group row py-4">
+                            <div class="col-lg-4 offset-lg-2">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-header">Nota</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Special title treatment</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <table class="card-body table table-responsive table-striped py-4">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Rol</th>
+                        <th>descripcion</th>
+                        <th>acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rol}}
+                    <tr task="{{ID}}">
+                        <th scope="row">{{ID}}</th>
+                        <td>{{rol}}</td>
+                        <td>{{descripcion}}</td>
+                        <td>
+                            <button id="edit-rol" class="btn btn-success updateicon fas fa-edit">editar</button>
+                            <form action="/rol/eliminar/{{ID}}?_method=DELETE" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit"
+                                    class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

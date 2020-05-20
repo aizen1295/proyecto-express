@@ -1,0 +1,73 @@
+<main class="py-5 frms">
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-md-12 py-1">
+                <div class="card">
+                    <h2 class="m-b-2 card-header ">Registro clientes</h2>
+                    <form id="form-cliente" class="py-5 card-body ">
+                        <div class="form-group row">
+                            <input type="hidden" id="id">
+                            <label for="rolUsuario" class=" col-lg-2 col-form-label">tipo de cliente</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_tipo_cliente">
+                                    <option value="0">seleccione tipo</option>
+                                    {{#each tipo_cliente}}
+                                    <option value="{{ID}}">{{descripcion}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <label for="personaUsuario" class=" col-lg-2 col-form-label">Persona</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_persona">
+                                    <option value="0">seleccione </option>
+                                    {{#each persona}}
+                                    <option value="{{ID}}">{{nombres}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row py-4">
+                            <div class="col-lg-6 offset-lg-2">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+        <table class="card-body table table-responsive table-striped py-4">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nombre</th>
+                    <th>apellido</th>
+                    <th>N documento</th>
+                    <th>tipo de cliente</th>
+                    <th>acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each cliente}}
+                <tr task="{{ID}}">
+                    <th scope="row">{{ID}}</th>
+                    <td>{{nombres}}</td>
+                    <td>{{apellidos}}</td>
+                    <td>{{N_documento}} </td>
+                    <td>{{descripcion}}</td>
+                    <td>
+                        <button id="edit-cliente" class="btn btn-success updateicon fas fa-edit">editar</button>
+                        <form action="/clientes/eliminar/{{ID}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</main>

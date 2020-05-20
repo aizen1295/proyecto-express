@@ -1,0 +1,119 @@
+<main class="py-5 frms">
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-md-8 py-1">
+                <div class="card">
+                    <h2 class="m-b-2 card-header ">Registro Producto</h2>
+                    <form class="py-5 card-body " id="form1">
+                        <div class="form-group row">
+                            <input type="hidden" id="id">
+                            <label for="nombreProducto" class="col-lg-2 col-form-label">Nombre</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="nombre" placeholder="Nombre Producto"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese el Nombre">
+                            </div>
+                            <label for="descriProducto" class="col-lg-2 col-form-label">Descripción</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="descripcion" placeholder="Descripción"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese la Descripción">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="valorUnidadCompra" class=" col-lg-2 col-form-label">Valor Compra</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="compra" placeholder="Valor Unidad Compra"
+                                    data-toggle="tooltip" data-placement="top" title="Valor Unidad Compra">
+                            </div>
+
+                            <label for="valorUnidadCliente" class=" col-lg-2 col-form-label">Valor de venta</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="venta" placeholder="Valor Unidad Cliente"
+                                    data-toggle="tooltip" data-placement="top" title="Valor Unidad venta">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="marcaProducto" class=" col-lg-2 col-form-label">Marca
+                            </label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="marca">
+                                    <option value="0">marca del producto</option>
+                                    {{#each marca}}
+                                    <option value="{{ID}}">{{tipo_producto}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+
+                            <label for="valorUnidadCliente" class=" col-lg-2 col-form-label">ubicacion</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="ubicacion">
+                                    <option value="0">estantes</option>
+                                    {{#each bodega}}
+                                    <option value="{{ID}}">{{zona}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row py-4">
+                            <div class="col-lg-6 offset-lg-2">
+
+                                <button id="agregar" class="btn btn-primary">Agregar</button>
+
+                                <button type="reset" class="btn btn-secondary">cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-header">Nota</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Special title treatment</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <table class="card-body table table-responsive table-striped py-4">
+                <thead class="text-center">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>precio de compra</th>
+                        <th>precio de venta</th>
+                        <th>Tipo de prodicto</th>
+                        <th>ubucacion en la bodega</th>
+                        <th colspan="2">acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {{#each producto}}
+                    <tr task="{{ID}}">
+                        <th scope="row">{{ID}}</th>
+                        <td>{{Nombre}}</td>
+                        <td>{{descripcion}}</td>
+                        <td>{{precio_de_compra}}</td>
+                        <td>{{precio_de_venta}}</td>
+                        <td>{{tipo_producto}}</td>
+                        <td>{{zona}}</td>
+                        <td>
+                            <button id="edit-producto" class="btn btn-success updateicon fas fa-edit">editar</button>
+                            <form action="/productos/eliminar/{{ID}}?_method=DELETE" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit"
+                                    class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

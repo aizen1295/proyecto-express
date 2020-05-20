@@ -1,0 +1,146 @@
+<main class="py-5 frms">
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-md-8 py-1">
+                <div class="card">
+                    <h2 class="m-b-2 card-header ">Factura</h2>
+                    <form id="form-factura" class="py-5 card-body ">
+                        <div class="form-group row">
+                            <input type="hidden" id="id">
+                            <label for="usuario" class=" col-lg-2 col-form-label">empleado
+                            </label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_empleados">
+                                    <option value="0">seleccione empleado</option>
+                                    {{#each empleado}}
+                                    <option value="{{ID}}">{{nombres}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <label for="cliente" class=" col-lg-2 col-form-label">Cliente</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_cliente">
+                                    <option value="0">seleccione cliente</option>
+                                    {{#each cliente}}
+                                    <option value="{{ID}}">{{nombres}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="producto" class=" col-lg-2 col-form-label">Producto</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_producto">
+                                    <option value="0">seleccione producto</option>
+                                    {{#each producto}}
+                                    <option value="{{ID}}">{{Nombre}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <label for="valorUnidad" class="col-lg-2 col-form-label">Valor Unidad</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="valor_venta" placeholder="Valor Unidad"
+                                    data-toggle="tooltip" data-placement="top" title="Valor Unidad" readonly="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cantidad" class=" col-lg-2 col-form-label">Cantidad</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="cantidad" placeholder="Cantidad"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese la cantidad">
+                            </div>
+                            <label for="totalAcumulado" class="col-lg-2 col-form-label">iva</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="iva" placeholder="iva"
+                                    data-toggle="tooltip" data-placement="top" title="iva" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="totalAcumulado" class="col-lg-2 col-form-label">Total</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="total" placeholder="Total"
+                                    data-toggle="tooltip" data-placement="top" title="Total de Factura" readonly="">
+                            </div>
+                            <label for="producto" class=" col-lg-2 col-form-label">metodo de pago</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_tipo">
+                                    <option value="0">seleccione metodo</option>
+                                    {{#each pago}}
+                                    <option value="{{ID}}">{{tipo_de_compra}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="fechaNacimiento" class=" col-lg-2 col-form-label">Fecha </label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="date" id="fecha" placeholder="Fecha "
+                                    data-toggle="tooltip" data-placement="top">
+                            </div>
+                        </div>
+
+                        <div class="form-group row py-4">
+                            <div class="col-lg-6 offset-lg-2">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 py-1">
+                <div class="card">
+                    <div class="card-header">Nota</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Special title treatment</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <table class="card-body table table-responsive table-striped py-4">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>fecha</th>
+                        <th>cliente</th>
+                        <th>empleado</th>
+                        <th>producto</th>
+                        <th>precio de venta</th>
+                        <th>metodo de pago</th>
+                        <th>cantidad</th>
+                        <th>iva</th>
+                        <th>total</th>
+                        <th>acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each factura}}
+                    <tr task="{{ID}}">
+                        <th scope="row">{{ID}}</th>
+                        <td>{{fecha}}</td>
+                        <td>{{cliente}}</td>
+                        <td>{{empleado}}</td>
+                        <td>{{producto}}</td>
+                        <td>{{precio_de_venta}}</td>
+                        <td>{{tipo_de_compra}}</td>
+                        <td>{{cantidad}}</td>
+                        <td>{{iva}}</td>
+                        <td>{{total}}</td>
+                        <td>
+                            <button id="edit-factura" class="btn btn-success updateicon fas fa-edit">editar</button>
+                            <form action="/factura/eliminar/{{ID}}?_method=DELETE" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit"
+                                    class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

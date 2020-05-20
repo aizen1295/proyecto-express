@@ -1,0 +1,85 @@
+<main class="py-5 frms">
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-md-12 py-1">
+                <div class="card">
+                    <h2 class="m-b-2 card-header ">Registro empleados</h2>
+                    <form id="form-empleado" class="py-5 card-body ">
+                        <div class="form-group row">
+                            <input type="hidden" id="id">
+                            <label for="nombreUsuario" class="col-lg-2 col-form-label">Usuario</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="usuario" placeholder="Nombre"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese su Nombre">
+                            </div>
+                            <label for="contraUsuario" class="col-lg-2 col-form-label">Contraseña</label>
+                            <div class="col-lg-4">
+                                <input class=" form-control" type="text" id="contra" placeholder="Contraseña"
+                                    data-toggle="tooltip" data-placement="top" title="Ingrese su Contraseña">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="rolUsuario" class=" col-lg-2 col-form-label">Rol</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_rol">
+                                    <option value="0">rol del empleado</option>
+                                    {{#each rol}}
+                                    <option value="{{ID}}">{{rol}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <label for="personaUsuario" class=" col-lg-2 col-form-label">Persona</label>
+                            <div class="col-lg-4">
+                                <select class="form-control" id="id_persona">
+                                    <option value="0">seleccione </option>
+                                    {{#each persona}}
+                                    <option value="{{ID}}">{{nombres}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row py-4">
+                            <div class="col-lg-6 offset-lg-2">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+        <table class="card-body table table-responsive table-striped py-4">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Usuario</th>
+                    <th>contraseña</th>
+                    <th class="text-center">Nombre de Persona</th>
+                    <th>Rol</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each empleado}}
+                <tr task="{{ID}}">
+                    <th scope="row">{{ID}}</th>
+                    <td>{{usuario}}</td>
+                    <td>{{contra}}</td>
+                    <td>{{nombres}} {{apellidos}}</td>
+                    <td>{{rol}}</td>
+                    <td>
+                        <button id="edit-empleado" class="btn btn-success updateicon fas fa-edit">editar</button>
+                        <form action="/empleados/eliminar/{{ID}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</main>
