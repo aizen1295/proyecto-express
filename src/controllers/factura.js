@@ -3,19 +3,22 @@ const ctrl = {};
 
 ctrl.index = async (red, res) => {
 	const factura = await pool.query(
-		'SELECT et.ID, et.fecha, c.ID proveedor, em.ID empleado, pro.Nombre producto, pro.precio_de_venta, et.cantidad, et.iva, et.total, tc.tipo_de_compra FROM entrada_facturas et INNER JOIN empleados em ON em.ID = et.id_empleados INNER JOIN productos pro ON pro.ID = et.id_producto INNER JOIN persona p ON p.ID = em.id_persona INNER JOIN clientes c ON c.ID = et.id_cliente INNER JOIN tipo_de_compra tc ON tc.ID = et.id_tipo'
+		'SELECT st.ID, st.fecha, c.ID cliente, em.ID empleado, pro.Nombre producto, pro.precio_de_venta, st.cantidad, st.iva, st.total, tc.tipo_de_compra FROM salidas_facturas st INNER JOIN empleados em ON em.ID = st.id_empleados INNER JOIN productos pro ON pro.ID = st.id_producto INNER JOIN persona p ON p.ID = em.id_persona INNER JOIN clientes c ON c.ID = st.id_cliente INNER JOIN tipo_de_compra tc ON tc.ID = st.id_tipo'
 	);
 	const empleado = await pool.query(
 		'SELECT e.ID, p.nombres FROM empleados e INNER JOIN persona p ON p.ID = e.id_persona'
 	);
-	const proveedor = await pool.query('SELECT * FROM proveedor ');
+	const cliente = await pool.query(
+		'SELECT c.ID, p.nombres FROM clientes c INNER JOIN persona p ON p.ID = c.id_persona'
+	);
 	const producto = await pool.query('SELECT * FROM productos ');
 	const pago = await pool.query('SELECT * FROM tipo_de_compra ');
-	res.render('factura/frmfactura', { factura, empleado, proveedor, producto, pago });
+	res.render('factura/frmfactura', { factura, empleado, cliente, producto, pago });
 };
 
 ctrl.create = async (req, res) => {
 	const factura = req.body;
+	console.log(factura);
 	await pool.query('INSERT INTO salidas_facturas set ?', [factura]);
 };
 

@@ -28,6 +28,8 @@ $(document).ready(function () {
 			$('#id').val(empleado.ID);
 			$('#usuario').val(empleado.usuario);
 			$('#contra').val(empleado.contra);
+			$('#id_rol').val(empleado.id_rol);
+			$('#id_persona').val(empleado.id_persona);
 			edit = true;
 		});
 	});

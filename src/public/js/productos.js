@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	let edit = false;
-	$('#form-productos').submit(function () {
+	$('#form-producto').submit(function () {
 		const nombre = $('#nombre').val();
 		const descripcion = $('#descripcion').val();
 		const compra = $('#compra').val();
@@ -21,7 +21,7 @@ $(document).ready(function () {
 				id_bodega: ubicacion,
 			},
 		});
-		$('#form-productos').trigger('reset');
+		$('#form-producto').trigger('reset');
 	});
 
 	$(document).on('click', '#edit-producto', function () {
@@ -33,8 +33,8 @@ $(document).ready(function () {
 			$('#id').val(producto.ID);
 			$('#nombre').val(producto.Nombre);
 			$('#descripcion').val(producto.descripcion);
-			$('#compra').val(producto.precio_de_venta);
-			$('#venta').val(producto.precio_de_compra);
+			$('#compra').val(producto.precio_de_compra);
+			$('#venta').val(producto.precio_de_venta);
 			$('#marca').val(producto.id_marca);
 			$('#ubicacion').val(producto.id_bodega);
 			edit = true;

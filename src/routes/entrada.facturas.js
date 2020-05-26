@@ -14,5 +14,7 @@ router.get('/pedido/actualizar/:id', pedido.show);
 router.post('/pedido/editar/:id', pedido.edit);
 //eliminar pedido
 router.delete('/pedido/eliminar/:id', pedido.delete);
+//traer valor venta
+router.get('/pedido/calcular/:id', pedido.cal);
 
 module.exports = router;

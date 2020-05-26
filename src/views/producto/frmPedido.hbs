@@ -3,8 +3,8 @@
         <div class="row py-4">
             <div class="col-md-8 py-1">
                 <div class="card">
-                    <h2 class="m-b-2 card-header ">Factura</h2>
-                    <form id="form-factura" class="py-5 card-body ">
+                    <h2 class="m-b-2 card-header ">pedidos</h2>
+                    <form id="form-pedido" class="py-5 card-body ">
                         <div class="form-group row">
                             <input type="hidden" id="id">
                             <label for="usuario" class=" col-lg-2 col-form-label">empleado
@@ -17,12 +17,12 @@
                                     {{/each}}
                                 </select>
                             </div>
-                            <label for="cliente" class=" col-lg-2 col-form-label">Cliente</label>
+                            <label for="proveedor" class=" col-lg-2 col-form-label">proveedor</label>
                             <div class="col-lg-4">
-                                <select class="form-control" id="id_cliente">
-                                    <option value="0">seleccione cliente</option>
-                                    {{#each cliente}}
-                                    <option value="{{ID}}">{{nombres}}</option>
+                                <select class="form-control" id="id_proveedor">
+                                    <option value="0">seleccione proveedor</option>
+                                    {{#each proveedor}}
+                                    <option value="{{ID}}">{{empresa}}</option>
                                     {{/each}}
                                 </select>
                             </div>
@@ -39,7 +39,7 @@
                             </div>
                             <label for="valorUnidad" class="col-lg-2 col-form-label">Valor Unidad</label>
                             <div class="col-lg-4">
-                                <input class=" form-control" type="text" id="valor_venta" placeholder="Valor Unidad"
+                                <input class=" form-control" type="text" id="valor_compra" placeholder="Valor Unidad"
                                     data-toggle="tooltip" data-placement="top" title="Valor Unidad" readonly="">
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <label for="totalAcumulado" class="col-lg-2 col-form-label">Total</label>
                             <div class="col-lg-4">
                                 <input class=" form-control" type="text" id="total" placeholder="Total"
-                                    data-toggle="tooltip" data-placement="top" title="Total de Factura" readonly="">
+                                    data-toggle="tooltip" data-placement="top" title="Total de pedido" readonly="">
                             </div>
                             <label for="producto" class=" col-lg-2 col-form-label">metodo de pago</label>
                             <div class="col-lg-4">
@@ -83,7 +83,9 @@
 
                         <div class="form-group row py-4">
                             <div class="col-lg-6 offset-lg-2">
+
                                 <button type="submit" class="btn btn-primary">Enviar</button>
+
                                 <button type="reset" class="btn btn-secondary">Limpiar</button>
                             </div>
                         </div>
@@ -105,7 +107,7 @@
                     <tr>
                         <th>N°</th>
                         <th>fecha</th>
-                        <th>cliente</th>
+                        <th>proveedor</th>
                         <th>empleado</th>
                         <th>producto</th>
                         <th>precio de compra</th>
@@ -117,11 +119,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each factura}}
+                    {{#each pedido}}
                     <tr task="{{ID}}">
                         <th scope="row">{{ID}}</th>
                         <td>{{fecha}}</td>
-                        <td>{{cliente}}</td>
+                        <td>{{proveedor}}</td>
                         <td>{{empleado}}</td>
                         <td>{{producto}}</td>
                         <td>{{precio_de_compra}}</td>
@@ -130,8 +132,8 @@
                         <td>{{iva}}</td>
                         <td>{{total}}</td>
                         <td>
-                            <button id="edit-factura" class="btn btn-success updateicon fas fa-edit">editar</button>
-                            <form action="/factura/eliminar/{{ID}}?_method=DELETE" method="POST">
+                            <button id="edit-pedido" class="btn btn-success updateicon fas fa-edit">editar</button>
+                            <form action="/pedido/eliminar/{{ID}}?_method=DELETE" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit"
                                     class="btn btn-danger deleteicon fas fa-trash-alt">eliminar</button>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	let edit = false;
-	$('#form-factura').submit(function () {
+	$('#form-pedido').submit(function () {
 		const fecha = $('#fecha').val();
 		const id_proveedor = $('#id_proveedor').val();
 		const id_empleados = $('#id_empleados').val();
@@ -10,7 +10,7 @@ $(document).ready(function () {
 		const iva = $('#iva').val();
 		const total = $('#total').val();
 		const id = $('#id').val();
-		const url = edit === false ? `/factura/agregar` : `/factura/editar/${id}`;
+		const url = edit === false ? `/pedido/agregar` : `/pedido/editar/${id}`;
 		$.ajax({
 			url: url,
 			method: 'POST',
@@ -25,33 +25,34 @@ $(document).ready(function () {
 				total: total,
 			},
 		});
-		$('#form-factura').trigger('reset');
+		$('#form-pedido').trigger('reset');
 	});
 
-	$(document).on('click', '#edit-factura', function () {
+	$(document).on('click', '#edit-pedido', function () {
 		var elemento = $(this)[0].parentElement.parentElement;
 		const id = $(elemento).attr('task');
 		console.log(id);
-		$.get(`/factura/actualizar/${id}`, (res) => {
-			var factura = res;
-			$('#id').val(factura.ID);
-			$('#fecha').val(factura.fecha);
-			$('#id_proveedor').val(factura.id_proveedor);
-			$('#id_empleados').val(factura.id_empleados);
-			$('#id_producto').val(factura.id_producto);
-			$('#id_tipo').val(factura.id_tipo);
-			$('#cantidad').val(factura.cantidad);
-			$('#valor_venta').val(factura.precio_de_venta);
-			$('#iva').val(factura.iva);
-			$('#total').val(factura.total);
+		$.get(`/pedido/actualizar/${id}`, (res) => {
+			var pedido = res;
+			$('#id').val(pedido.ID);
+			$('#fecha').val(pedido.fecha);
+			$('#id_proveedor').val(pedido.id_proveedor);
+			$('#id_empleados').val(pedido.id_empleados);
+			$('#id_producto').val(pedido.id_producto);
+			$('#id_tipo').val(pedido.id_tipo);
+			$('#cantidad').val(pedido.cantidad);
+			$('#valor_compra').val(pedido.precio_de_compra);
+			$('#iva').val(pedido.iva);
+			$('#total').val(pedido.total);
 			edit = true;
 		});
 	});
 	$(function () {
-		$('#cantidad-compra').change(function () {
+		$('#cantidad').change(function () {
 			let valor = $('#valor_compra').val();
 			let cantidad = $('#cantidad').val();
-			let iva = $('#iva').val();
+			let iva = valor * cantidad * 0.19;
+			$('#iva').val(iva);
 			let ivas = parseFloat(iva);
 			let valor_total = valor * cantidad + ivas;
 			$('#total').val(valor_total);
@@ -66,8 +67,7 @@ $(document).ready(function () {
 		var id_producto = $(this).val();
 		$.get(`/pedido/calcular/${id_producto}`, (res) => {
 			let producto = res;
-			$('#valor_venta').val(producto.precio_de_compra);
-			$('#iva').val(producto.precio_de_compra * 0.19);
+			$('#valor_compra').val(producto.precio_de_compra);
 		});
 	}
 });

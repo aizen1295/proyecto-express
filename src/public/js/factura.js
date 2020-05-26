@@ -51,7 +51,8 @@ $(document).ready(function () {
 		$('#cantidad').change(function () {
 			let valor = $('#valor_venta').val();
 			let cantidad = $('#cantidad').val();
-			let iva = $('#iva').val();
+			let iva = valor * cantidad * 0.19;
+			$('#iva').val(iva);
 			let ivas = parseFloat(iva);
 			let valor_total = valor * cantidad + ivas;
 			$('#total').val(valor_total);
@@ -67,7 +68,6 @@ $(document).ready(function () {
 		$.get(`/factura/calcular/${id_producto}`, (res) => {
 			let producto = res;
 			$('#valor_venta').val(producto.precio_de_venta);
-			$('#iva').val(producto.precio_de_venta * 0.19);
 		});
 	}
 });
